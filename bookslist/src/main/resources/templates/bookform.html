@@ -1,0 +1,12 @@
+<div th:if="${mensagem}" th:text="{mensagem}"></div>
+
+<form action="/book/form/save" method="post">
+    Nome: <input type="text" id="name" name="name"/>
+    Autor:
+    <select name="author">
+    <option th:each="author : ${authors}"
+            th:value="${author.id}"
+            th:text="${author.name}"/>
+    </select>
+    <button type="submit">Salvar Livro</button>
+</form>

@@ -1,17 +1,24 @@
 package br.com.bookslist.controller;
 
 
-import org.springframework.boot.Banner;
+import br.com.bookslist.entity.Book;
+import br.com.bookslist.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-public class bookController {
+import java.util.List;
 
-    @GetMapping("/books")
+@RestController
+public class IndexController {
+
+    @Autowired
+    private BookService bookService;
+
+    @GetMapping("/lista")
     public ModelAndView getList(){
+        List<Book> bookList = this.bookService.findAll();
         ModelAndView modelAndView = new ModelAndView("index");
         return modelAndView;
     }
